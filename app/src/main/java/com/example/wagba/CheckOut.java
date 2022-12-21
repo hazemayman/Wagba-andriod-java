@@ -10,11 +10,13 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 import com.example.wagba.databinding.ActivityLoginBinding;
 import com.example.wagba.databinding.FragmentCheckOutBinding;
@@ -24,6 +26,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -97,37 +101,58 @@ public class CheckOut extends Fragment {
                     RadioButton deliveryLocation = view.findViewById(selectedId);
                     String deliveryTime;
                     String deliveryGate;
+                    int timeChoice = 1;
                     if (binding.delivery3Rb.isChecked()){
                          deliveryTime ="3:00PM.";
                     }else{
                          deliveryTime = "12:00PM.";
+                        timeChoice = 2;
                     }
 
-
-                    if(binding.gateARb.isChecked()){
-                        deliveryGate = "Gate A.";
+                    boolean condition = true;
+                    if(timeChoice == 1){
+                        Date currentTime = Calendar.getInstance().getTime();
+                        Date as = new Date(currentTime.getYear(), currentTime.getMonth(), currentTime.getDate(), 13, 0);
+                        if(currentTime.getTime() >= as.getTime()){
+                            condition = false;
+                        }
                     }else{
-                        deliveryGate = "Gate B.";
+                        Date currentTime = Calendar.getInstance().getTime();
+                        Date as = new Date(currentTime.getYear(), currentTime.getMonth(), currentTime.getDate(), 10, 0);
+                        if(currentTime.getTime() >= as.getTime()){
+                            condition = false;
+                        }
                     }
 
-                    String key = myRef.push().getKey();
-                    String email = currentUser.getEmail();
-                    HashMap<String, Object> result = new HashMap<>();
-                    result.put("restaurant" , CurrentRestaurant.getRestaurantName());
-                    result.put("Food" , checkoutItems);
-                    result.put("Status", "Pending");
-                    result.put("User", email);
-                    result.put("Total", total.toString());
-                    result.put("DeliveryFee", CurrentRestaurant.getPrice());
-                    result.put("DeliveryLocation", deliveryGate);
-                    result.put("DeliveryTime", deliveryTime);
+                    if(condition){
+                        if(binding.gateARb.isChecked()){
+                            deliveryGate = "Gate A.";
+                        }else{
+                            deliveryGate = "Gate B.";
+                        }
 
-                    Map<String, Object> childUpdates = new HashMap<>();
-                    String[] arrOfStr = email.split("@", 2);
-                    myRef = myRef.child(arrOfStr[0]);
-                    childUpdates.put(key, result);
-                    myRef.updateChildren(childUpdates);
-                    goToProfile();
+                        String key = myRef.push().getKey();
+                        String email = currentUser.getEmail();
+                        HashMap<String, Object> result = new HashMap<>();
+                        result.put("restaurant" , CurrentRestaurant.getRestaurantName());
+                        result.put("Food" , checkoutItems);
+                        result.put("Status", "Pending");
+                        result.put("User", email);
+                        result.put("Total", total.toString());
+                        result.put("DeliveryFee", CurrentRestaurant.getPrice());
+                        result.put("DeliveryLocation", deliveryGate);
+                        result.put("DeliveryTime", deliveryTime);
+
+                        Map<String, Object> childUpdates = new HashMap<>();
+                        String[] arrOfStr = email.split("@", 2);
+                        myRef = myRef.child(arrOfStr[0]);
+                        childUpdates.put(key, result);
+                        myRef.updateChildren(childUpdates);
+                        goToProfile();
+                    }else{
+                        Toast.makeText(getContext(), "Time not valid" , Toast.LENGTH_SHORT).show();
+                    }
+
                 }
             }
         });
