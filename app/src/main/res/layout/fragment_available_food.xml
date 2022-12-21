@@ -4,8 +4,6 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:layout_marginHorizontal="5dp"
-    android:layout_marginVertical="10dp"
     android:minHeight="15dp"
     >
 

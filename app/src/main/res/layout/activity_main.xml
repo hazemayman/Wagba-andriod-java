@@ -10,11 +10,12 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/main_fc"
-        android:name="com.example.wagba.Resturant"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginHorizontal="10dp"
         android:layout_weight="1"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="50dp"
+        android:layout_marginBottom="20dp"
         tools:layout="@layout/fragment_available_food" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

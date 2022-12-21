@@ -2,6 +2,7 @@ package com.example.wagba;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,13 +22,14 @@ public class CreateAccountActivity extends AppCompatActivity {
 
     ActivityCreateAccountBinding binding;
     private FirebaseAuth mAuth;
+    private WagbaViewModel wagbaViewModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityCreateAccountBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
-
+        wagbaViewModel = new ViewModelProvider(this).get(WagbaViewModel.class);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -46,8 +48,10 @@ public class CreateAccountActivity extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     // Sign in success, update UI with the signed-in user's information
                                     FirebaseUser user = mAuth.getCurrentUser();
+                                    wagbaViewModel.insert(new UserTable(emailAddress , firstName , lastName));
                                     startActivity(new Intent(CreateAccountActivity.this , MainActivity.class));
-                                    Log.d("qwe", "can't login ");
+
+                                    finish();
                                 } else {
                                     Toast.makeText(CreateAccountActivity.this, "Can't create the new Account",
                                             Toast.LENGTH_LONG).show();

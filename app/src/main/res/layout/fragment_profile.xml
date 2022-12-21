@@ -3,20 +3,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_marginHorizontal="10dp"
-    android:layout_marginVertical="10dp"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textView28"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="start"
+        android:orientation="horizontal">
 
-        android:text="@string/profile"
-        android:textColor="@color/mainColor"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+        <TextView
+            android:id="@+id/textView28"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+
+            android:gravity="start"
+            android:text="@string/profile"
+            android:textColor="@color/mainColor"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/logout_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/roundedbuttonforgetpassword"
+            android:text="@string/log_out"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:layout_weight="2"
+            android:textStyle="bold" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,7 +43,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textView29"
+            android:id="@+id/profileUserName_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/profile_name"
@@ -34,7 +51,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/textView30"
+            android:id="@+id/profileEmail_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/profile__email"
@@ -53,25 +70,28 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
+
+        android:id="@+id/order_rv"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginBottom="20dp"
         android:layout_weight="1"
         tools:listitem="@layout/item_active_order"
 
         />
 
-    <Button
-        android:id="@+id/button6"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/roundedbuttonforgetpassword"
-        android:text="@string/profile_history"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        android:textStyle="bold" />
+    <!--    <Button-->
+<!--        android:id="@+id/showHistory_btn"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginHorizontal="10dp"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:layout_marginBottom="20dp"-->
+<!--        android:background="@drawable/roundedbuttonforgetpassword"-->
+<!--        android:text="@string/profile_history"-->
+<!--        android:textAllCaps="false"-->
+<!--        android:textColor="@color/white"-->
+<!--        android:textSize="16sp"-->
+<!--        android:textStyle="bold" />-->
 
 </LinearLayout>

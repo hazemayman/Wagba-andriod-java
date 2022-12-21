@@ -20,6 +20,7 @@ import java.util.ArrayList;
 public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.ViewHolder> {
 
 
+
     public interface OnRestaurantClickListener {
         void onRestaurantClick(RestaurantModel RestaurantName);
     }

@@ -4,8 +4,6 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:layout_marginHorizontal="5dp"
-    android:layout_marginVertical="10dp"
     >
 
     <TextView
@@ -21,6 +19,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
+        android:id="@+id/checkout_rv"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:paddingEnd="2dp"
@@ -35,18 +34,21 @@
         <RadioGroup
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1" >
+            android:layout_weight="4"
+            android:id="@+id/deliveryLocation_rg"
+            >
 
             <RadioButton
-                android:id="@+id/radioButton3"
+                android:id="@+id/gateA_rb"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="48dp"
                 android:text="@string/gate_a_delivery"
+                android:checked="true"
                 android:textColor="@color/mainColor" />
 
             <RadioButton
-                android:id="@+id/radioButton4"
+                android:id="@+id/gateB_rb"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="48dp"
@@ -57,18 +59,21 @@
         <RadioGroup
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:layout_weight="5"
+            android:id="@+id/deliveryTime_rg"
+            >
 
             <RadioButton
-                android:id="@+id/radioButton"
+                android:id="@+id/delivery12_rb"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="48dp"
+                android:checked="true"
                 android:text="@string/delivery_time_12_00pm"
                 android:textColor="@color/mainColor" />
 
             <RadioButton
-                android:id="@+id/radioButton2"
+                android:id="@+id/delivery3_rb"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="48dp"
@@ -106,7 +111,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textView25"
+                android:id="@+id/subtotal_tv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -129,7 +134,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textView26"
+                android:id="@+id/deliveryFee_tv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -152,7 +157,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textView27"
+                android:id="@+id/total_tv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -167,11 +172,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="20dp"
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/addItem_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="5dp"
@@ -183,7 +187,7 @@
             android:textSize="16sp" />
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/checkout_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="5dp"

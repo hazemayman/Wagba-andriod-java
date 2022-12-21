@@ -32,10 +32,14 @@ public class WagbaViewModel extends AndroidViewModel {
     public List<FoodTable> getFoodForRestaurant(String restaurantName){
         return wagbaRepository.getFoodForRestaurant(restaurantName);
     }
+    public UserTable getUserWithEmail(String email){
+        return wagbaRepository.getUserWithEmail(email);
+    }
     public void insert(FoodTable food) {
         wagbaRepository.insert(food);
     }
     public void insert(RestaurantTable restaurant) {
         wagbaRepository.insert(restaurant);
     }
+    public void insert(UserTable user) {wagbaRepository.insert(user);}
 }

@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -40,6 +41,8 @@ public class AvailableFood extends Fragment {
     TextView basketPrice;
     Button viewBasket;
     Double totalPrice = 0.0;
+    BottomNavigationView bottomNavigation;
+
     public AvailableFood(RestaurantModel restaurantModel) {
         this.restaurantName = restaurantModel.getRestaurantName();
         this.CURRENT_RESTAURANT_MODEL = restaurantModel;
@@ -81,19 +84,7 @@ public class AvailableFood extends Fragment {
         viewBasket.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentManager fragmentManager =getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                CheckOut availableFoodFragment = new CheckOut(basketFoods);
-                fragmentTransaction.setCustomAnimations(
-                        R.anim.slide_in,  // enter
-                        R.anim.fade_out,  // exit
-                        R.anim.fade_in,   // popEnter
-                        R.anim.slide_out  // popExit
-                );
-                fragmentTransaction.replace(R.id.main_fc, availableFoodFragment);
-                fragmentTransaction.setReorderingAllowed(true);
-                fragmentTransaction.addToBackStack("Food");
-                fragmentTransaction.commit();
+                goToBasket();
             }
         });
         myRef.addChildEventListener(new ChildEventListener() {
@@ -148,5 +139,8 @@ public class AvailableFood extends Fragment {
         basketNumber.setText(String.valueOf(basketFoods.size()));
         totalPrice += Double.parseDouble(item.getPrice());
         basketPrice.setText(totalPrice.toString());
+    }
+    public void goToBasket(){
+        MainActivity.goToBasket(basketFoods);
     }
 }
