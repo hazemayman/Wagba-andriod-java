@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/stores"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_fastfood_24"
+        android:title="Stores"/>
+    <item
+        android:id="@+id/basket"
+        android:enabled="false"
+        android:icon="@drawable/ic_baseline_shopping_basket_24"
+        android:title="Basket"/>
+    <item
+        android:id="@+id/profile"
+        android:enabled="false"
+        android:icon="@drawable/ic_baseline_person_24"
+        android:title="Profile"/>
+</menu>

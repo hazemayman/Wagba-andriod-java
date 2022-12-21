@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Ultriva/StudioProjects/Wagba/app/src/main/res/drawable-v24/clickablelayout.xml" value="0.121" />
+        <entry key="..\:/Users/Ultriva/StudioProjects/Wagba/app/src/main/res/drawable-v24/linearlayoutborder.xml" value="0.2115" />
+        <entry key="..\:/Users/Ultriva/StudioProjects/Wagba/app/src/main/res/drawable-v24/order_status_closed.xml" value="0.2115" />
+        <entry key="..\:/Users/Ultriva/StudioProjects/Wagba/app/src/main/res/drawable-v24/order_status_pending.xml" value="0.2115" />
+        <entry key="..\:/Users/Ultriva/StudioProjects/Wagba/app/src/main/res/drawable-v24/roundedbutton.xml" value="0.2115" />
+        <entry key="..\:/Users/Ultriva/StudioProjects/Wagba/app/src/main/res/drawable-v24/roundedbuttonadditem.xml" value="0.2115" />
+        <entry key="..\:/Users/Ultriva/StudioProjects/Wagba/app/src/main/res/drawable-v24/roundedbuttonforgetpassword.xml" value="0.2115" />
+        <entry key="..\:/Users/Ultriva/StudioProjects/Wagba/app/src/main/res/drawable-v24/roundimage.xml" value="0.2115" />
+        <entry key="..\:/Users/Ultriva/StudioProjects/Wagba/app/src/main/res/drawable-v24/userimage.xml" value="0.2115" />
+        <entry key="..\:/Users/Ultriva/StudioProjects/Wagba/app/src/main/res/layout/activity_create_account.xml" value="0.2" />
+        <entry key="..\:/Users/Ultriva/StudioProjects/Wagba/app/src/main/res/layout/activity_forget_password.xml" value="0.25" />
+        <entry key="..\:/Users/Ultriva/StudioProjects/Wagba/app/src/main/res/layout/activity_login.xml" value="0.25" />
+        <entry key="..\:/Users/Ultriva/StudioProjects/Wagba/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/Ultriva/StudioProjects/Wagba/app/src/main/res/layout/activity_order_delivery.xml" value="0.25" />
+        <entry key="..\:/Users/Ultriva/StudioProjects/Wagba/app/src/main/res/layout/fragment_active_order_delivery.xml" value="0.264" />
+        <entry key="..\:/Users/Ultriva/StudioProjects/Wagba/app/src/main/res/layout/fragment_available_food.xml" value="0.25" />
+        <entry key="..\:/Users/Ultriva/StudioProjects/Wagba/app/src/main/res/layout/fragment_check_ou.xml" value="0.25" />
+        <entry key="..\:/Users/Ultriva/StudioProjects/Wagba/app/src/main/res/layout/fragment_check_out.xml" value="0.25" />
+        <entry key="..\:/Users/Ultriva/StudioProjects/Wagba/app/src/main/res/layout/fragment_deleviry_history.xml" value="0.25" />
+        <entry key="..\:/Users/Ultriva/StudioProjects/Wagba/app/src/main/res/layout/fragment_history.xml" value="0.25" />
+        <entry key="..\:/Users/Ultriva/StudioProjects/Wagba/app/src/main/res/layout/fragment_profile.xml" value="0.25" />
+        <entry key="..\:/Users/Ultriva/StudioProjects/Wagba/app/src/main/res/layout/fragment_resturant.xml" value="0.25" />
+        <entry key="..\:/Users/Ultriva/StudioProjects/Wagba/app/src/main/res/layout/fragment_tracking_orders.xml" value="0.25" />
+        <entry key="..\:/Users/Ultriva/StudioProjects/Wagba/app/src/main/res/layout/item_active_order.xml" value="0.25" />
+        <entry key="..\:/Users/Ultriva/StudioProjects/Wagba/app/src/main/res/layout/item_checkout.xml" value="0.25" />
+        <entry key="..\:/Users/Ultriva/StudioProjects/Wagba/app/src/main/res/layout/item_deliver.xml" value="0.25" />
+        <entry key="..\:/Users/Ultriva/StudioProjects/Wagba/app/src/main/res/layout/item_deliver_item.xml" value="0.25" />
+        <entry key="..\:/Users/Ultriva/StudioProjects/Wagba/app/src/main/res/layout/item_history_order.xml" value="0.25" />
+        <entry key="..\:/Users/Ultriva/StudioProjects/Wagba/app/src/main/res/layout/item_order_item.xml" value="0.25" />
+        <entry key="..\:/Users/Ultriva/StudioProjects/Wagba/app/src/main/res/layout/item_restaurant.xml" value="0.4" />
+        <entry key="..\:/Users/Ultriva/StudioProjects/Wagba/app/src/main/res/layout/item_resturant_food.xml" value="0.2359375" />
+        <entry key="..\:/Users/Ultriva/StudioProjects/Wagba/app/src/main/res/layout/item_tracking.xml" value="0.25" />
+        <entry key="..\:/Users/Ultriva/StudioProjects/Wagba/app/src/main/res/layout/toolbar.xml" value="0.2359375" />
+        <entry key="..\:/Users/Ultriva/StudioProjects/Wagba/app/src/main/res/menu/bottom_navigation_delivery.xml" value="0.25" />
+        <entry key="..\:/Users/Ultriva/StudioProjects/Wagba/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.25" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
