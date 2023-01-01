@@ -1,4 +1,4 @@
-package com.example.wagba;
+package com.example.wagba.restaurant;
 
 import android.graphics.drawable.Drawable;
 

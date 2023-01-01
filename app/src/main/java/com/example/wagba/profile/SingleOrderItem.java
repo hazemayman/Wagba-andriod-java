@@ -1,4 +1,4 @@
-package com.example.wagba;
+package com.example.wagba.profile;
 
 public class SingleOrderItem {
     String itemName;

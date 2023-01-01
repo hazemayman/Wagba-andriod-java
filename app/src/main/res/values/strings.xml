@@ -6,8 +6,8 @@
     <string name="login_with_email">Login</string>
     <string name="forgot_password">Forgot password?</string>
     <string name="create_an_account">Create an account</string>
-    <string name="email_address">Email address</string>
-    <string name="password">Password</string>
+    <string name="email_address">Email address (must @eng.asu.edu.eg)</string>
+    <string name="password">Password (8 characters at least)</string>
     <string name="moto">Order your favourite food now</string>
     <string name="reset_your_password">Reset your password</string>
     <string name="create_new_account">Create new account</string>
@@ -81,4 +81,8 @@
     <string name="log_out">Log Out</string>
     <string name="gate_a">Gate A</string>
     <string name="_3_00_pm">3:00 PM</string>
+    <string name="edit_profileprofile">edit Profileprofile</string>
+    <string name="edit_profile">Edit profile</string>
+    <string name="submit_edit">Submit Edit</string>
+    <string name="age">Age (14-100)</string>
 </resources>

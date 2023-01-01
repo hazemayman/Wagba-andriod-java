@@ -35,6 +35,9 @@ public class WagbaViewModel extends AndroidViewModel {
     public UserTable getUserWithEmail(String email){
         return wagbaRepository.getUserWithEmail(email);
     }
+    void updateUser(String email , String firstName , String lastName , int age){
+        wagbaRepository.updateUser(email, firstName, lastName, age);
+    }
     public void insert(FoodTable food) {
         wagbaRepository.insert(food);
     }

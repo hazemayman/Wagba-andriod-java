@@ -1,4 +1,4 @@
-package com.example.wagba;
+package com.example.wagba.food;
 
 public class FoodModel {
     String foodName;

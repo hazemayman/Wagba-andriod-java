@@ -21,10 +21,15 @@ public class UserTable {
     @ColumnInfo(name = "lastName")
     private String lastName;
 
-    public UserTable(@NonNull String email , @NonNull String firstName , @NonNull String lastName) {
+    @NonNull
+    @ColumnInfo(name = "age")
+    private int age;
+
+    public UserTable(@NonNull String email , @NonNull String firstName , @NonNull String lastName , @NonNull int age) {
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.age = age;
     }
 
     public void setEmail(@NonNull String email) {
@@ -37,6 +42,14 @@ public class UserTable {
 
     public void setLastName(@NonNull String lastName) {
         this.lastName = lastName;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 
     @NonNull

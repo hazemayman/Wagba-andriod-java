@@ -22,14 +22,15 @@
         <entry key="..\:/Users/Ultriva/StudioProjects/Wagba/app/src/main/res/layout/fragment_check_ou.xml" value="0.25" />
         <entry key="..\:/Users/Ultriva/StudioProjects/Wagba/app/src/main/res/layout/fragment_check_out.xml" value="0.25" />
         <entry key="..\:/Users/Ultriva/StudioProjects/Wagba/app/src/main/res/layout/fragment_deleviry_history.xml" value="0.25" />
+        <entry key="..\:/Users/Ultriva/StudioProjects/Wagba/app/src/main/res/layout/fragment_edit_profile.xml" value="0.25" />
         <entry key="..\:/Users/Ultriva/StudioProjects/Wagba/app/src/main/res/layout/fragment_history.xml" value="0.25" />
-        <entry key="..\:/Users/Ultriva/StudioProjects/Wagba/app/src/main/res/layout/fragment_profile.xml" value="0.25" />
+        <entry key="..\:/Users/Ultriva/StudioProjects/Wagba/app/src/main/res/layout/fragment_profile.xml" value="0.27314814814814814" />
         <entry key="..\:/Users/Ultriva/StudioProjects/Wagba/app/src/main/res/layout/fragment_resturant.xml" value="0.25" />
         <entry key="..\:/Users/Ultriva/StudioProjects/Wagba/app/src/main/res/layout/fragment_tracking_orders.xml" value="0.25" />
-        <entry key="..\:/Users/Ultriva/StudioProjects/Wagba/app/src/main/res/layout/item_active_order.xml" value="0.25" />
+        <entry key="..\:/Users/Ultriva/StudioProjects/Wagba/app/src/main/res/layout/item_active_order.xml" value="0.4" />
         <entry key="..\:/Users/Ultriva/StudioProjects/Wagba/app/src/main/res/layout/item_checkout.xml" value="0.25" />
         <entry key="..\:/Users/Ultriva/StudioProjects/Wagba/app/src/main/res/layout/item_deliver.xml" value="0.25" />
-        <entry key="..\:/Users/Ultriva/StudioProjects/Wagba/app/src/main/res/layout/item_deliver_item.xml" value="0.25" />
+        <entry key="..\:/Users/Ultriva/StudioProjects/Wagba/app/src/main/res/layout/item_deliver_item.xml" value="0.4" />
         <entry key="..\:/Users/Ultriva/StudioProjects/Wagba/app/src/main/res/layout/item_history_order.xml" value="0.25" />
         <entry key="..\:/Users/Ultriva/StudioProjects/Wagba/app/src/main/res/layout/item_order_item.xml" value="0.25" />
         <entry key="..\:/Users/Ultriva/StudioProjects/Wagba/app/src/main/res/layout/item_restaurant.xml" value="0.4" />

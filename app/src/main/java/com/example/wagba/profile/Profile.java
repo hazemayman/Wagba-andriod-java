@@ -1,12 +1,13 @@
-package com.example.wagba;
+package com.example.wagba.profile;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -14,12 +15,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
-import com.example.wagba.databinding.FragmentCheckOutBinding;
+import com.example.wagba.EditProfile;
+import com.example.wagba.LoginActivity;
+import com.example.wagba.MainActivity;
+import com.example.wagba.R;
+import com.example.wagba.UserTable;
+import com.example.wagba.WagbaViewModel;
 import com.example.wagba.databinding.FragmentProfileBinding;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.example.wagba.food.AvailableFood;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -29,8 +33,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Collections;
 
 
 public class Profile extends Fragment {
@@ -60,6 +63,7 @@ public class Profile extends Fragment {
         orders = new ArrayList<>();
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
+
         String[] arrOfStr = currentUser.getEmail().split("@", 2);
         database = FirebaseDatabase.getInstance("https://wagba-17f4c-default-rtdb.europe-west1.firebasedatabase.app/");
         myRef = database.getReference("/ActiveOrders/"+arrOfStr[0]);
@@ -80,8 +84,24 @@ public class Profile extends Fragment {
         binding.orderRv.setLayoutManager(new LinearLayoutManager(inflater.getContext(),
                 LinearLayoutManager.VERTICAL, false));
 
-
-
+        binding.editProfileBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager =getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                EditProfile availableFoodFragment = new EditProfile();
+                fragmentTransaction.setCustomAnimations(
+                        R.anim.slide_in,  // enter
+                        R.anim.fade_out,  // exit
+                        R.anim.fade_in,   // popEnter
+                        R.anim.slide_out  // popExit
+                );
+                fragmentTransaction.replace(R.id.main_fc, availableFoodFragment , "editProfile");
+                fragmentTransaction.setReorderingAllowed(true);
+                fragmentTransaction.addToBackStack("profile");
+                fragmentTransaction.commit();
+            }
+        });
         myRef.addChildEventListener(new ChildEventListener() {
 
             @Override
@@ -91,6 +111,7 @@ public class Profile extends Fragment {
                 String orderGate = dataSnapshot.child("DeliveryLocation").getValue().toString();
                 String orderRestaurant = dataSnapshot.child("restaurant").getValue().toString();
                 String orderTime = dataSnapshot.child("DeliveryTime").getValue().toString();
+                String date = dataSnapshot.child("Date").getValue().toString();
                 String orderID = dataSnapshot.getKey();
                 ArrayList<SingleOrderItem> itemList = new ArrayList<>();
                 for (DataSnapshot foodSnapShot : dataSnapshot.child("Food").getChildren()){
@@ -99,9 +120,9 @@ public class Profile extends Fragment {
                 }
 
                 orders.add(new OrderItem(itemList,
-                        orderState ,orderPrice ,  orderGate , orderTime, orderID , orderRestaurant));
+                        orderState ,orderPrice ,  orderGate , orderTime, orderID ,date , orderRestaurant));
                 Log.d("firebase", String.valueOf(dataSnapshot.getValue()));
-
+                Collections.reverse(orders);
                 adapter.setOrders(orders);
             }
 
@@ -115,6 +136,7 @@ public class Profile extends Fragment {
                         String orderGate = dataSnapshot.child("DeliveryLocation").getValue().toString();
                         String orderRestaurant = dataSnapshot.child("restaurant").getValue().toString();
                         String orderTime = dataSnapshot.child("DeliveryTime").getValue().toString();
+                        String date = dataSnapshot.child("Date").getValue().toString();
                         String orderID = dataSnapshot.getKey();
                         ArrayList<SingleOrderItem> itemList = new ArrayList<>();
                         for (DataSnapshot foodSnapShot : dataSnapshot.child("Food").getChildren()){
@@ -123,14 +145,12 @@ public class Profile extends Fragment {
                         }
 
                         orders.set(index, new OrderItem(itemList,
-                                orderState ,orderPrice ,  orderGate , orderTime, orderID , orderRestaurant));
+                                orderState ,orderPrice ,  orderGate , orderTime, orderID, date , orderRestaurant));
                         adapter.setOrders(orders);
                         break;
                     }
                     index+=1;
                 }
-
-
             }
 
             @Override
@@ -154,9 +174,19 @@ public class Profile extends Fragment {
 
     }
     private void updateUI(){
-        UserTable user = wagbaViewModel.getUserWithEmail(currentUser.getEmail());
-        binding.profileUserNameTv.setText(user.getFirstName()+" "+user.getLastName());
-        binding.profileEmailTv.setText(user.getEmail());
+        UserTable user = wagbaViewModel.getUserWithEmail("18p2696@eng.asu.edu.eg");
+        if(user == null){
+            binding.profileAgeTv.setText(" ");
+            binding.profileUserNameTv.setText(" ");
+            binding.profileEmailTv.setText("please set your data through Edit profile");
+        }else{
+            binding.profileAgeTv.setText("Age " + Integer.toString(user.getAge()));
+            binding.profileUserNameTv.setText(user.getFirstName()+" "+user.getLastName());
+            binding.profileEmailTv.setText(user.getEmail());
+        }
+
+
+
     }
 
 }

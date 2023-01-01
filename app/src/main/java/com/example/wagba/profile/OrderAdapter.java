@@ -1,20 +1,18 @@
-package com.example.wagba;
+package com.example.wagba.profile;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.w3c.dom.Text;
+import com.example.wagba.R;
 
 import java.util.ArrayList;
 
@@ -27,8 +25,8 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
             viewPool
             = new RecyclerView
             .RecycledViewPool();
-    public OrderAdapter(ArrayList<OrderItem> restaurantModel  , Context c) {
-        this.userModelsIntenals = restaurantModel;
+    public OrderAdapter(ArrayList<OrderItem> orders  , Context c) {
+        this.userModelsIntenals = orders;
         this.c = c;
     }
 
@@ -62,7 +60,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         holder.itemList.setLayoutManager(layoutManager);
         holder.itemList.setAdapter(adapter);
         holder.itemList.setRecycledViewPool(viewPool);
-
+        holder.orderDate.setText(item.getDate());
 
 
 
@@ -91,6 +89,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         TextView orderTime;
         TextView orderRestaurant;
         ImageView orderImage;
+        TextView orderDate;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -101,10 +100,10 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
             orderTime = itemView.findViewById(R.id.orderTime_tv);
             orderImage = itemView.findViewById(R.id.order_iv);
             orderRestaurant = itemView.findViewById(R.id.orderRestaurant);
+            orderDate = itemView.findViewById(R.id.orderDate_tv);
 
         }
         public void bind(final OrderItem item) {
-
 
         }
     }

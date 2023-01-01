@@ -18,6 +18,10 @@ public interface UserDao {
     @Query("SELECT * FROM user_table WHERE email = :email")
     UserTable getUserWithEmail(String email);
 
+
+    @Query("UPDATE user_table set firstName=:firstName , lastName=:lastName, age=:age WHERE email = :email")
+    void updateUser(String email , String firstName , String lastName , int age);
+
     @Query("SELECT * from user_table ORDER BY email ASC")
     List<UserTable> getAllUsers();
 }

@@ -1,4 +1,4 @@
-package com.example.wagba;
+package com.example.wagba.profile;
 
 import java.util.ArrayList;
 
@@ -9,16 +9,26 @@ public class OrderItem {
     String orderGate;
     String orderTime;
     String orderID;
+    String date;
     String orderRestaurant;
 
-    public OrderItem(ArrayList<SingleOrderItem> itemList, String orderState, String orderPrice, String orderGate, String orderTime, String orderID, String orderRestaurant) {
+    public OrderItem(ArrayList<SingleOrderItem> itemList, String orderState, String orderPrice, String orderGate, String orderTime, String orderID, String date, String orderRestaurant) {
         this.itemList = itemList;
         this.orderState = orderState;
         this.orderPrice = orderPrice;
         this.orderGate = orderGate;
         this.orderTime = orderTime;
         this.orderID = orderID;
+        this.date = date;
         this.orderRestaurant = orderRestaurant;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public ArrayList<SingleOrderItem> getItemList() {

@@ -40,25 +40,48 @@ public class CreateAccountActivity extends AppCompatActivity {
                 String lastName = binding.lastNameEt.getText().toString();
                 String emailAddress = binding.emailAddresEt.getText().toString();
                 String password = binding.passwordEt.getText().toString();
+                String age = binding.ageEt.getText().toString();
 
-                mAuth.createUserWithEmailAndPassword(emailAddress, password)
-                        .addOnCompleteListener(CreateAccountActivity.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    // Sign in success, update UI with the signed-in user's information
-                                    FirebaseUser user = mAuth.getCurrentUser();
-                                    wagbaViewModel.insert(new UserTable(emailAddress , firstName , lastName));
-                                    startActivity(new Intent(CreateAccountActivity.this , MainActivity.class));
-
-                                    finish();
-                                } else {
-                                    Toast.makeText(CreateAccountActivity.this, "Can't create the new Account",
-                                            Toast.LENGTH_LONG).show();
+                boolean result = CheckAccount(emailAddress,password,Integer.parseInt(age));
+                if(result){
+                    mAuth.createUserWithEmailAndPassword(emailAddress, password)
+                            .addOnCompleteListener(CreateAccountActivity.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        // Sign in success, update UI with the signed-in user's information
+                                        FirebaseUser user = mAuth.getCurrentUser();
+                                        wagbaViewModel.insert(new UserTable(emailAddress , firstName , lastName , Integer.parseInt(age)));
+                                        startActivity(new Intent(CreateAccountActivity.this , MainActivity.class));
+                                        finish();
+                                    } else {
+                                        Toast.makeText(CreateAccountActivity.this, "Can't create the new Account",
+                                                Toast.LENGTH_LONG).show();
+                                    }
                                 }
-                            }
-                        });
+                            });
+                }
+
             }
         });
+    }
+
+    private boolean CheckAccount(String email, String password, int age){
+        CharSequence a = "eng.asu.edu.eg";
+        if(age <14 || age > 80){
+            Toast.makeText(CreateAccountActivity.this, "age must be between 14 and 80",
+                    Toast.LENGTH_LONG).show();
+            return false;
+        }else if(!email.contains(a)){
+            Toast.makeText(CreateAccountActivity.this, "email domain should be @eng.asu.edu.eg",
+                    Toast.LENGTH_LONG).show();
+            return false;
+        }else if (password.length() < 8){
+            Toast.makeText(CreateAccountActivity.this, "password must be more than 8 characters",
+                    Toast.LENGTH_LONG).show();
+            return false;
+        }
+        return true;
+
     }
 }

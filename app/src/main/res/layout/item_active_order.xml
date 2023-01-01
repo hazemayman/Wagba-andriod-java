@@ -36,7 +36,16 @@
                 android:layout_height="wrap_content"
                 android:text="@string/gate_a"
                 android:textColor="@color/FullyBlack"
-                android:textSize="13sp" />
+                android:textSize="11sp" />
+
+            <TextView
+                android:id="@+id/orderDate_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:text="@string/_3_00_pm"
+                android:textColor="@color/FullyBlack"
+                android:textSize="11sp" />
 
             <TextView
                 android:id="@+id/orderTime_tv"
@@ -45,7 +54,8 @@
                 android:layout_weight="2"
                 android:text="@string/_3_00_pm"
                 android:textColor="@color/FullyBlack"
-                android:textSize="13sp" />
+                android:textSize="11sp" />
+
             <TextView
                 android:id="@+id/orderRestaurant"
                 android:layout_width="wrap_content"
@@ -53,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/_3_00_pm"
                 android:textColor="@color/FullyBlack"
-                android:textSize="13sp" />
+                android:textSize="11sp" />
 
         </LinearLayout>
 
@@ -67,14 +77,14 @@
                 android:id="@+id/orderItems_rv"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="6"
+                android:layout_weight="7"
                 tools:listitem="@layout/item_order_item"
                 />
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="2"
+                android:layout_weight="3"
                 android:orientation="vertical">
 
                 <TextView

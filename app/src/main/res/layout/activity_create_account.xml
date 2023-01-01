@@ -54,6 +54,20 @@
             android:layout_weight="1"></Space>
 
         <EditText
+            android:id="@+id/age_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/age"
+            android:inputType="numberDecimal"
+            android:minHeight="48dp" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"></Space>
+
+        <EditText
             android:id="@+id/emailAddres_et"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

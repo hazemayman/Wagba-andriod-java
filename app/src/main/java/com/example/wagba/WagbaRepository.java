@@ -37,6 +37,9 @@ public class WagbaRepository {
 //        return new insertAsyncTask_user_get(userDao).execute(email);
         return userDao.getUserWithEmail(email);
     }
+    void updateUser(String email , String firstName , String lastName , int age){
+            userDao.updateUser(email, firstName, lastName, age);
+    }
     public void insert (FoodTable food) {
         new insertAsyncTask_food(foodDao).execute(food);
     }

@@ -6,7 +6,7 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-@Database(entities = {FoodTable.class , RestaurantTable.class , UserTable.class}, version = 3, exportSchema = false)
+@Database(entities = {FoodTable.class , RestaurantTable.class , UserTable.class}, version = 4, exportSchema = false)
 public abstract class WordRoomDatabase extends RoomDatabase {
     public abstract restaurantDao restaurantDao();
     public abstract foodDao foodDao();

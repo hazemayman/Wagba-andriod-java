@@ -1,16 +1,12 @@
-package com.example.wagba;
+package com.example.wagba.restaurant;
 
-import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentContainer;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,12 +16,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.wagba.MainActivity;
+import com.example.wagba.food.AvailableFood;
+import com.example.wagba.R;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -35,6 +33,7 @@ public class Resturant extends Fragment {
 
     RecyclerView restaurantsRecycleView;
     ArrayList<RestaurantModel> restaurantModels;
+    public static RestaurantModel CurrentRestaurant;
     FirebaseDatabase database ;
     DatabaseReference myRef ;
     RestaurantAdapter adapter;
@@ -58,7 +57,8 @@ public class Resturant extends Fragment {
             public void onRestaurantClick(RestaurantModel restaurantModel) {
                 Log.d("onRestaurantClick", "onRestaurantClick");
                 Toast.makeText(getContext(), "Item Clicked : " + restaurantModel.getRestaurantName(), Toast.LENGTH_SHORT).show();
-                goToAvailableFood(restaurantModel);
+                CurrentRestaurant = restaurantModel;
+                goToAvailableFood();
             }
         });
         restaurantsRecycleView.setAdapter(adapter);
@@ -114,26 +114,10 @@ public class Resturant extends Fragment {
 
         return view;
     }
-
-    @Override
-    public void onDestroyView() {
-
-        Log.d("destroy_Restaurant", "Destroy Restaurant fragment ");
-        super.onDestroyView();
+    public void goToAvailableFood(){
+        MainActivity.goToFood();
     }
-    public void goToAvailableFood(RestaurantModel restaurantModel){
-        FragmentManager fragmentManager =getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        AvailableFood availableFoodFragment = new AvailableFood(restaurantModel);
-        fragmentTransaction.setCustomAnimations(
-                R.anim.slide_in,  // enter
-                R.anim.fade_out,  // exit
-                R.anim.fade_in,   // popEnter
-                R.anim.slide_out  // popExit
-        );
-        fragmentTransaction.replace(R.id.main_fc, availableFoodFragment , "food_fragment");
-        fragmentTransaction.setReorderingAllowed(true);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
+    public static RestaurantModel getRestaurantModel(){
+        return CurrentRestaurant;
     }
 }

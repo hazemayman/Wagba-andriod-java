@@ -1,19 +1,18 @@
-package com.example.wagba;
+package com.example.wagba.restaurant;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.w3c.dom.Text;
+import com.bumptech.glide.Glide;
+import com.example.wagba.R;
 
 import java.util.ArrayList;
 
@@ -27,7 +26,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Vi
 
     ArrayList<RestaurantModel> userModelsIntenals;
     private final OnRestaurantClickListener listener;
-
+    Context context;
 
     public RestaurantAdapter(ArrayList<RestaurantModel> restaurantModel , OnRestaurantClickListener listener) {
         this.userModelsIntenals = restaurantModel;
@@ -37,7 +36,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Vi
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Context context = parent.getContext();
+        context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.item_restaurant , parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
@@ -82,10 +81,13 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Vi
             restaurantName.setText(item.getRestaurantName());
             restaurantDescription.setText(item.getDescription());
             restaurantStars.setText(item.getStars().toString());
-            Context context =   restaurantImage.getContext();
-            int id = context.getResources().getIdentifier(item.getImage(), "drawable", context.getPackageName());
-            Log.d("onRestaurantClick", "onRestaurantClick");
-            restaurantImage.setImageResource(id);
+
+            Log.d("restaurantImage",item.getImage().toString());
+
+            Glide.with(context)
+                    .load(item.getImage())
+                    .into(restaurantImage);
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override public void onClick(View v) {
                     Log.d("onRestaurantClick", "onRestaurantClick");

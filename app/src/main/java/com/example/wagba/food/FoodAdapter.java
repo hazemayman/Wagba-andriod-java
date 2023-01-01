@@ -1,34 +1,32 @@
-package com.example.wagba;
+package com.example.wagba.food;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.w3c.dom.Text;
+import com.bumptech.glide.Glide;
+import com.example.wagba.R;
 
 import java.util.ArrayList;
 
-public class CheckOutAdapter extends RecyclerView.Adapter<CheckOutAdapter.ViewHolder> {
+public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
 
 
     public interface OnFoodClickListener {
-        void onFoodClick(CheckoutItem item);
+        void onFoodClick(FoodModel item);
     }
 
-    ArrayList<CheckoutItem> userModelsIntenals;
+    ArrayList<FoodModel> userModelsIntenals;
     private final OnFoodClickListener listener;
+    Context context;
 
-
-    public CheckOutAdapter(ArrayList<CheckoutItem> foodModel , OnFoodClickListener listener) {
+    public FoodAdapter(ArrayList<FoodModel> foodModel , OnFoodClickListener listener) {
         this.userModelsIntenals = foodModel;
         this.listener = listener;
     }
@@ -36,19 +34,19 @@ public class CheckOutAdapter extends RecyclerView.Adapter<CheckOutAdapter.ViewHo
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Context context = parent.getContext();
+        context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.item_checkout , parent, false);
+        View view = inflater.inflate(R.layout.item_resturant_food , parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
     }
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        CheckoutItem restaurantModel = userModelsIntenals.get(position);
+        FoodModel restaurantModel = userModelsIntenals.get(position);
         holder.bind(restaurantModel, listener);
     }
 
-    void setFood( ArrayList<CheckoutItem> newList){
+    void setRestaurants( ArrayList<FoodModel> newList){
         userModelsIntenals = newList;
         notifyDataSetChanged();
     }
@@ -59,24 +57,27 @@ public class CheckOutAdapter extends RecyclerView.Adapter<CheckOutAdapter.ViewHo
 
     public class ViewHolder extends  RecyclerView.ViewHolder{
         TextView foodName;
-        TextView quantity;
+        TextView foodDescription;
         TextView foodPrice;
         ImageView foodImage;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            foodName = itemView.findViewById(R.id.checkout_tv);
-            quantity = itemView.findViewById(R.id.checkoutQuantity_tv);
-            foodPrice = itemView.findViewById(R.id.checkoutAmount_tv);
-            foodImage = itemView.findViewById(R.id.checkout_iv);
-        }
-        public void bind(final CheckoutItem item, final OnFoodClickListener listener) {
+            foodName = itemView.findViewById(R.id.foodName_tv);
+            foodDescription = itemView.findViewById(R.id.foodDescription_tv);
+            foodPrice = itemView.findViewById(R.id.foodPrice_tv);
+            foodImage = itemView.findViewById(R.id.foodImage_imv);
 
-            foodPrice.setText(item.getPrice());
+        }
+        public void bind(final FoodModel item, final OnFoodClickListener listener) {
+
+            foodPrice.setText(item.getPrice().toString());
             foodName.setText(item.getFoodName());
-            quantity.setText(item.getQuantity());
-            Context context =   foodImage.getContext();
-            int id = context.getResources().getIdentifier(item.getImage(), "drawable", context.getPackageName());
-            foodImage.setImageResource(id);
+            foodDescription.setText(item.getDescription());
+
+            Glide.with(context)
+                    .load(item.getImage())
+                    .into(foodImage);
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override public void onClick(View v) {
                     listener.onFoodClick(item);

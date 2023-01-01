@@ -8,7 +8,7 @@
     android:orientation="horizontal">
 
     <ImageView
-        android:layout_width="0dp"
+        android:layout_width="42dp"
         android:id="@+id/checkout_iv"
         android:layout_height="42dp"
         android:layout_gravity="center|center_horizontal|center_vertical"
@@ -23,13 +23,31 @@
         android:layout_weight="5"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/checkout_tv"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/food_name"
-            android:textColor="@color/FullyBlack"
-            android:textSize="16sp" />
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/checkout_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:text="@string/food_name"
+                android:textColor="@color/FullyBlack"
+                android:textSize="16sp" />
+
+            <ImageButton
+
+                android:background="@drawable/roundedbuttonforgetpassword"
+                android:text="@string/add_items"
+                android:id="@+id/deleteItem_btn"
+                android:layout_width="55sp"
+                android:layout_height="30sp"
+                app:srcCompat="@drawable/ic_baseline_delete_24" />
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
