@@ -144,48 +144,48 @@ public class CheckOut extends Fragment {
                         }
                     }
 
-                    if(true){
-                        if(binding.gateARb.isChecked()){
-                            deliveryGate = "Gate A.";
-                        }else{
-                            deliveryGate = "Gate B.";
-                        }
-
-                        String key = myRef.push().getKey();
-                        String email = currentUser.getEmail();
-                        HashMap<String, Object> result = new HashMap<>();
-                        result.put("restaurant" , CurrentRestaurant.getRestaurantName());
-                        result.put("Food" , checkoutItems);
-                        result.put("Status", "Pending");
-                        result.put("User", email);
-                        result.put("Total", total.toString());
-                        result.put("DeliveryFee", CurrentRestaurant.getPrice());
-                        result.put("DeliveryLocation", deliveryGate);
-                        result.put("DeliveryTime", deliveryTime);
-
-                        Date cDate = new Date();
-                        String fDate = new SimpleDateFormat("yyyy-MM-dd").format(cDate);
-                        result.put("Date", fDate);
-
-                        Map<String, Object> childUpdates = new HashMap<>();
-                        String[] arrOfStr = email.split("@", 2);
-                        myRef = myRef.child(arrOfStr[0]);
-
-                        childUpdates.put(key, result);
-                        myRef.updateChildren(childUpdates);
-
-
-                        myRef = database.getReference("RestaurantOrders");
-                        myRef = myRef.child(CurrentRestaurant.getRestaurantName());
-                        childUpdates = new HashMap<>();
-                        childUpdates.put(key, result);
-                        myRef.updateChildren(childUpdates);
-
-                        AvailableFood.resetBasket();
-                        goToProfile();
-                    }else{
-                        Toast.makeText(getContext(), "Time not valid" , Toast.LENGTH_SHORT).show();
+                    if(!condition) {
+                        Toast.makeText(getContext(), "Time not valid, but continue for testing" , Toast.LENGTH_SHORT).show();
                     }
+                    if(binding.gateARb.isChecked()){
+                        deliveryGate = "Gate A.";
+                    }else{
+                        deliveryGate = "Gate B.";
+                    }
+
+                    String key = myRef.push().getKey();
+                    String email = currentUser.getEmail();
+                    HashMap<String, Object> result = new HashMap<>();
+                    result.put("restaurant" , CurrentRestaurant.getRestaurantName());
+                    result.put("Food" , checkoutItems);
+                    result.put("Status", "Pending");
+                    result.put("User", email);
+                    result.put("Total", total.toString());
+                    result.put("DeliveryFee", CurrentRestaurant.getPrice());
+                    result.put("DeliveryLocation", deliveryGate);
+                    result.put("DeliveryTime", deliveryTime);
+
+                    Date cDate = new Date();
+                    String fDate = new SimpleDateFormat("yyyy-MM-dd").format(cDate);
+                    result.put("Date", fDate);
+
+                    Map<String, Object> childUpdates = new HashMap<>();
+                    String[] arrOfStr = email.split("@", 2);
+                    myRef = myRef.child(arrOfStr[0]);
+
+                    childUpdates.put(key, result);
+                    myRef.updateChildren(childUpdates);
+
+
+                    myRef = database.getReference("RestaurantOrders");
+                    myRef = myRef.child(CurrentRestaurant.getRestaurantName());
+                    childUpdates = new HashMap<>();
+                    childUpdates.put(key, result);
+                    myRef.updateChildren(childUpdates);
+
+                    AvailableFood.resetBasket();
+                    goToProfile();
+
 
                 }
             }
