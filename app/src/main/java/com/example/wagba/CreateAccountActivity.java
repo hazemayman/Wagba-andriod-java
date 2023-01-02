@@ -36,19 +36,21 @@ public class CreateAccountActivity extends AppCompatActivity {
         binding.createAccountBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String firstName = binding.firstNameEt.getText().toString();
-                String lastName = binding.lastNameEt.getText().toString();
-                String emailAddress = binding.emailAddresEt.getText().toString();
-                String password = binding.passwordEt.getText().toString();
-                String age = binding.ageEt.getText().toString();
+                String firstName = binding.firstNameEt.getText().toString().trim();
+                String lastName = binding.lastNameEt.getText().toString().trim();
+                String emailAddress = binding.emailAddresEt.getText().toString().trim();
+                String password = binding.passwordEt.getText().toString().trim();
+                String age = binding.ageEt.getText().toString().trim();
 
-                boolean result = CheckAccount(emailAddress,password,Integer.parseInt(age));
+                boolean result = CheckAccount(firstName , lastName , emailAddress,password,age);
                 if(result){
                     mAuth.createUserWithEmailAndPassword(emailAddress, password)
                             .addOnCompleteListener(CreateAccountActivity.this, new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
+                                        Toast.makeText(CreateAccountActivity.this, "New account created",
+                                                Toast.LENGTH_LONG).show();
                                         // Sign in success, update UI with the signed-in user's information
                                         FirebaseUser user = mAuth.getCurrentUser();
                                         wagbaViewModel.insert(new UserTable(emailAddress , firstName , lastName , Integer.parseInt(age)));
@@ -66,22 +68,35 @@ public class CreateAccountActivity extends AppCompatActivity {
         });
     }
 
-    private boolean CheckAccount(String email, String password, int age){
+    private boolean CheckAccount( String firstName , String lastName,String email, String password, String age) {
+
         CharSequence a = "eng.asu.edu.eg";
-        if(age <14 || age > 80){
-            Toast.makeText(CreateAccountActivity.this, "age must be between 14 and 80",
-                    Toast.LENGTH_LONG).show();
-            return false;
-        }else if(!email.contains(a)){
-            Toast.makeText(CreateAccountActivity.this, "email domain should be @eng.asu.edu.eg",
-                    Toast.LENGTH_LONG).show();
-            return false;
-        }else if (password.length() < 8){
-            Toast.makeText(CreateAccountActivity.this, "password must be more than 8 characters",
+        Log.d("ageeee", age);
+        if (!(firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || password.isEmpty() || age.isEmpty())) {
+            int ageInt = Integer.parseInt(age);
+            if (ageInt < 14 || ageInt > 80) {
+                Toast.makeText(CreateAccountActivity.this, "age must be between 14 and 80",
+                        Toast.LENGTH_LONG).show();
+                return false;
+            } else if (!email.contains(a)) {
+                Toast.makeText(CreateAccountActivity.this, "email domain should be @eng.asu.edu.eg",
+                        Toast.LENGTH_LONG).show();
+                return false;
+            } else if (password.length() < 8) {
+                Toast.makeText(CreateAccountActivity.this, "password must be more than 8 characters",
+                        Toast.LENGTH_LONG).show();
+                return false;
+            }else if ( wagbaViewModel.getUserWithEmail(email) != null){
+                Toast.makeText(CreateAccountActivity.this, "email Already in database",
+                        Toast.LENGTH_LONG).show();
+                return false;
+            }
+            return true;
+        }else{
+            Toast.makeText(CreateAccountActivity.this, "error in input data",
                     Toast.LENGTH_LONG).show();
             return false;
         }
-        return true;
-
     }
+
 }

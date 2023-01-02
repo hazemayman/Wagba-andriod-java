@@ -46,22 +46,25 @@ public class EditProfile extends Fragment {
             public void onClick(View view) {
 
                 String email = currentUser.getEmail();
-                String firstName = binding.firstNameEditEt.getText().toString();
-                String lastName = binding.lastNameEditEt.getText().toString();
-                int age = Integer.parseInt(binding.ageEditEt.getText().toString());
+                String firstName = binding.firstNameEditEt.getText().toString().trim();
+                String lastName = binding.lastNameEditEt.getText().toString().trim();
+                String age = binding.ageEditEt.getText().toString().trim();
 
-                boolean condition = CheckAccount(age);
+                boolean condition = CheckAccount(firstName ,lastName, age);
                 if(condition){
                     if(roomUser != null){
-                        wagbaViewModel.updateUser(email,firstName, lastName, age);
+                        wagbaViewModel.updateUser(email,firstName, lastName, Integer.parseInt(age));
                     }else{
-                        wagbaViewModel.insert(new UserTable(email , firstName , lastName , age));
+                        wagbaViewModel.insert(new UserTable(email , firstName , lastName , Integer.parseInt(age)));
                     }
                     Toast.makeText(getActivity(), "user's profile updated",
                             Toast.LENGTH_LONG).show();
                     FragmentManager fm = getFragmentManager();
                     fm.popBackStack();
 
+                }else{
+                    Toast.makeText(getActivity(), "error in input data",
+                            Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -70,13 +73,20 @@ public class EditProfile extends Fragment {
         return view;
     }
 
-    private boolean CheckAccount( int age){
-        if(age <14 || age > 80){
-            Toast.makeText(getActivity(), "age must be between 14 and 80",
-                    Toast.LENGTH_LONG).show();
-            return false;
+    private boolean CheckAccount(String firstname , String lastName , String age){
+        if(!(firstname.isEmpty() || lastName.isEmpty() || age.isEmpty())){
+            int ageInt = Integer.parseInt(age);
+            if(ageInt <14 || ageInt > 80){
+                Toast.makeText(getActivity(), "age must be between 14 and 80",
+                        Toast.LENGTH_LONG).show();
+                return false;
+            }
+            return true;
+        }else{
+            return  false;
         }
-        return true;
+
+
     }
     private void updateUi(){
         roomUser = wagbaViewModel.getUserWithEmail(currentUser.getEmail());

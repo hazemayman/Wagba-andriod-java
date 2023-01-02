@@ -174,11 +174,11 @@ public class Profile extends Fragment {
 
     }
     private void updateUI(){
-        UserTable user = wagbaViewModel.getUserWithEmail("18p2696@eng.asu.edu.eg");
+        UserTable user = wagbaViewModel.getUserWithEmail(currentUser.getEmail());
         if(user == null){
             binding.profileAgeTv.setText(" ");
-            binding.profileUserNameTv.setText(" ");
-            binding.profileEmailTv.setText("please set your data through Edit profile");
+            binding.profileUserNameTv.setText("please set your data through Edit profile");
+            binding.profileEmailTv.setText(currentUser.getEmail());
         }else{
             binding.profileAgeTv.setText("Age " + Integer.toString(user.getAge()));
             binding.profileUserNameTv.setText(user.getFirstName()+" "+user.getLastName());

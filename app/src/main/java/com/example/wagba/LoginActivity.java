@@ -64,28 +64,36 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String emailAddress = binding.emailAddresEt.getText().toString();
                 String password = binding.passwordEt.getText().toString();
-
-                mAuth.signInWithEmailAndPassword(emailAddress, password)
-                        .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    // Sign in success, update UI with the signed-in user's information
-                                    Intent intent = new Intent(LoginActivity.this , MainActivity.class);
-                                    startActivity(intent);
-                                    Log.d("qwe", "can't login ");
-                                } else {
-                                    // If sign in fails, display a message to the user.
-                                    Toast.makeText(LoginActivity.this, "wrong email address or password",
-                                            Toast.LENGTH_LONG).show();
+                if(checkData(emailAddress , password)){
+                    mAuth.signInWithEmailAndPassword(emailAddress, password)
+                            .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        // Sign in success, update UI with the signed-in user's information
+                                        Intent intent = new Intent(LoginActivity.this , MainActivity.class);
+                                        startActivity(intent);
+                                        Log.d("qwe", "can't login ");
+                                    } else {
+                                        // If sign in fails, display a message to the user.
+                                        Toast.makeText(LoginActivity.this, "wrong email address or password",
+                                                Toast.LENGTH_LONG).show();
+                                    }
                                 }
-                            }
-                        });
-
+                            });
+                }else{
+                    Toast.makeText(LoginActivity.this, "error in input data",
+                            Toast.LENGTH_LONG).show();
+                }
             }
         });
 
-
-
+    }
+    private  boolean checkData(String email , String password){
+        if(!(email.isEmpty() || password.isEmpty())){
+            return true;
+        }else{
+            return false;
+        }
     }
 }
